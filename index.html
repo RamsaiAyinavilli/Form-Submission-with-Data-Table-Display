@@ -1,0 +1,193 @@
+<html>
+<head>
+        <title>
+            Form Submission with Data Table Display
+        </title>
+
+        <style>
+            body{
+                position: relative; 
+                margin: 15px 30px;
+                height: 100vh;
+                width: 100vw;
+            }
+            .container{
+                position: relative;
+                align-content:center;
+                justify-content:center;
+                width:fit-content ;
+                height: fit-content;
+                
+              overflow: hidden;
+              border: 2px solid grey;
+              padding: 8px;
+              
+            }
+            form{
+                background-color: #c2bfebce;
+                padding: 8px 20px 13px 20px;
+               border: 2px solid #9592be4e;
+               border-radius: 5px;
+                 
+               
+            }
+          #FullName1{
+            margin-left: 35.5px;
+            margin-bottom: 5px;
+          }
+           #Number1{
+            margin-left: 51.5px;
+            margin-bottom: 5px;
+           } 
+           #Email1{
+            margin-left: 66px;
+            margin-bottom: 5px;
+           } 
+           #Education1{
+            margin-left: 39px;
+            margin-bottom: 5px;
+           } 
+           #Radio1{
+            margin-left: 52px;
+            margin-bottom: 10px;
+           } 
+           #Company1{
+            margin-left: 0px;
+            margin-bottom: 5px;
+           } 
+           #Role1{
+            margin-left: 75px;
+            margin-bottom: 5px;
+           } 
+          div input{
+            margin-bottom: 5px;
+          }
+           .Submit{
+            position: relative;
+            margin: 1% 35%  ;
+            color: blue;
+            background-color: whitesmoke;
+            cursor: pointer;
+           }
+          .Submit:hover{
+            color:whitesmoke;
+            background-color: blue;
+           }
+           table{
+            background-color: #63e7f3db;
+               border-radius: 3px;
+           }
+        </style>
+
+
+     <script > 
+            function E(x){
+            if(x == 0)
+           document.getElementById("worker").style.display="block";
+            else
+            document.getElementById("worker").style.display="none";
+            return;}
+
+            function Submit(){
+            var formData=Read();
+            Collect(formData);
+            reset();
+             }
+
+            function Read(){
+               var formDAta = {};
+                formDAta["FullName"]=document.getElementById("FullName").value;
+                formDAta["Number"]=document.getElementById("Number").value;
+                 formDAta["Email"]=document.getElementById("Email").value;
+             formDAta["Education"]=document.getElementById("Education").value;
+               formDAta["Company"]=document.getElementById("Company").value;
+               formDAta["Role"]=document.getElementById("Role").value;
+              return formDAta;
+               }
+       
+      function Collect(data){
+        var table=document.getElementById("records").getElementsByTagName('tbody')[0];
+        var newRow=table.insertRow(table.length);
+            cell1 = newRow.insertCell(0);
+            cell1.innerHTML=data.FullName;
+            cell2 = newRow.insertCell(1);
+            cell2.innerHTML=data.Number;
+            cell3 = newRow.insertCell(2);
+            cell3.innerHTML=data.Email;
+            cell4 = newRow.insertCell(3);
+            cell4.innerHTML=data.Education;
+            cell5 = newRow.insertCell(4);
+            cell5.innerHTML=data.Company;
+            cell6 = newRow.insertCell(5);
+            cell6.innerHTML=data.Role;
+
+         }
+function reset(){
+    document.getElementById("FullName").value = "";
+    document.getElementById("Number").value="";
+    document.getElementById("Email").value="";
+    document.getElementById("Education").value="";
+    document.getElementById("Company").value="";
+    document.getElementById("Role").value="";
+
+}
+        </script>
+    
+
+    <body>
+        <div class="container">
+        
+                <form onsubmit="event.preventDefault();Submit();">
+                    <div>
+                    <label>Full Name  </label><label id="FullName1">:</label>
+                    <input type="text" name="FullName" id="FullName">
+                    </div>
+                     <div>
+                    <label >Number  </label><label id="Number1">:</label>
+                    <input type="number" name="Number" id="Number">
+                    </div>
+                    <div>
+                     <label>Email  </label><label id="Email1">:</label>
+                    <input type="email" name="Email" id="Email">
+                    </div>
+                    <div >
+                        <label>Education  </label><label id="Education1">:</label>
+                        <input type="text" placeholder="highest education-year" id="Education">
+                    </div>
+                    <div>
+                        <label>Position </label><label id="Radio1">:</label>
+                       <input type="radio"  onclick="E(0)" value="Worker" checked name="Position" id="Radio"/>Worker
+                       <input type="radio" onclick="E(1)"  value="Non-Worker" name="Position" />Non-Worker
+                       </div>
+                       <div >
+                       <div id="worker">
+                        <label>Company Name  </label><label id="Company1">:</label>
+                        <input type="text" name="cNmae"  id="Company">
+                       <br>
+                        <label>Role  </label><label id="Role1">:</label>
+                        <input type="text" name="role"  id="Role">
+                       </div>
+                       </div>
+                      <br>
+                       <div>
+                        <input type="submit"  onsubmit="Submit()" value="Submit" class="Submit">
+                       </div>
+                </form>
+            <br><br>
+            <table  border="2px solid black"  cellpadding="10" id="records" >
+               <thead> <tr>
+                    <th>FullName</th>
+                    <th>Number</th>
+                    <th>Email</th>
+                    <th>Education</th>
+                    <th>company</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+            </table>
+       </div>
+    </body>
+</html>
